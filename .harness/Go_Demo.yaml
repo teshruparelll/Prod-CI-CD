@@ -1,19 +1,10 @@
 pipeline:
-  name: test
-  identifier: test
-  projectIdentifier: NgLabs
-  orgIdentifier: default
-  tags: {}
-  properties:
-        ci:
-            codebase:
-                connectorRef: account.goHelloWorldServer_repo
-                build: <+input>
-  variables:
-        - name: pipelineVar
-          type: String
-          value: pipelineVarValue   
-  stages:
+    name: Go Demo
+    identifier: Go_Demo
+    projectIdentifier: Product_Demos_CIE
+    orgIdentifier: default
+    tags: {}
+    stages:
         - stage:
               name: Build Test and Push
               identifier: Test_Build_and_Push
@@ -129,3 +120,12 @@ pipeline:
                   sharedPaths:
                       - ""
               description: running integ tests
+    properties:
+        ci:
+            codebase:
+                connectorRef: account.goHelloWorldServer_repo
+                build: <+input>
+    variables:
+        - name: pipelineVar
+          type: String
+          value: pipelineVarValue
