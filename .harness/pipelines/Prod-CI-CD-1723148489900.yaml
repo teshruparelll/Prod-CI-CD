@@ -89,7 +89,6 @@ pipeline:
                     command: |-
                       echo " <+matrix.testos> "
                       curl localhost:5000
-                  failureStrategies: []
                   strategy:
                     matrix:
                       testos:
@@ -185,11 +184,12 @@ pipeline:
                       minimumCount: 1
                       disallowPipelineExecutor: false
                       userGroups:
-                        - pravin
+                        - account._account_all_users
                         - org._organization_all_users
                     approverInputs:
                       - name: release No
                         defaultValue: ""
+                    isAutoRejectEnabled: false
         tags: {}
     - stage:
         identifier: UAT_ENV
@@ -244,24 +244,22 @@ pipeline:
                   type: JiraCreate
                   name: create a issue
                   spec:
-                    connectorRef: jira
-                    projectKey: CME
+                    connectorRef: account.Jira
+                    projectKey: SI
                     issueType: Task
                     fields:
-                      - name: Assignee
-                        value: email@email.com
-                      - name: Description
-                        value: approve this  deployment for prod
+                      - name: Reporter
+                        value: pdt.tesh@gmail.com
                       - name: Summary
-                        value: some summary what you want
+                        value: UAT Approval
                   timeout: 1d
               - step:
                   identifier: approve_the_issue
                   type: JiraApproval
                   name: approve the issue
                   spec:
-                    connectorRef: jira
-                    issueKey: <+pipeline.stages.UAT_Approval.spec.execution.steps.create_a_issue.issue.id>
+                    connectorRef: account.Jira
+                    issueKey: create_a_issue
                     approvalCriteria:
                       type: KeyValues
                       spec:
@@ -269,12 +267,15 @@ pipeline:
                         conditions:
                           - key: Status
                             operator: equals
-                            value: In Progress
+                            value: Approved
                     rejectionCriteria:
                       type: KeyValues
                       spec:
                         matchAnyCondition: true
                         conditions: []
+                    projectKey: SI
+                    issueType: Task
+                    retryInterval: 1m
                   timeout: 1d
         tags: {}
     - parallel:
@@ -401,11 +402,8 @@ pipeline:
                   name: update issue to done
                   timeout: 5m
                   spec:
-                    connectorRef: jira
+                    connectorRef: account.Jira
                     issueKey: <+pipeline.stages.UAT_Approval.spec.execution.steps.create_a_issue.issue.id>
-                    transitionTo:
-                      transitionName: ""
-                      status: Done
                     fields: []
         tags: {}
   variables: []
