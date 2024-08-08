@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_teshruparelll_Prod_CI_CD_1723148492595-push-trigger-input-set
+  identifier: Build_teshruparelll_Prod_CI_CD_1723148492595pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: ProdCICD
+  pipeline:
+    identifier: Build_teshruparelll_Prod_CI_CD_1723148492595
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
