@@ -44,10 +44,10 @@ pipeline:
                   name: docker_build
                   spec:
                     caching: true
-                    connectorRef: <+input>
-                    repo: hello/world
+                    connectorRef: account.DockerRepo
+                    repo: hiteshreeruparell/demo
                     tags:
-                      - latest
+                      - Prod-CI-CD
                   timeout: ""
                   type: BuildAndPushDockerRegistry
           platform:
