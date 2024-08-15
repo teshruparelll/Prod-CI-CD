@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_Prod_CI_CD_1723737779413-push-trigger-input-set
+  identifier: Build_Prod_CI_CD_1723737779413pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: HarnessCICD
+  pipeline:
+    identifier: Build_Prod_CI_CD_1723737779413
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
