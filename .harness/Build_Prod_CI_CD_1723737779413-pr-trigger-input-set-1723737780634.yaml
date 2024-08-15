@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_Prod_CI_CD_1723737779413-pr-trigger-input-set
+  identifier: Build_Prod_CI_CD_1723737779413prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: HarnessCICD
+  pipeline:
+    identifier: Build_Prod_CI_CD_1723737779413
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
