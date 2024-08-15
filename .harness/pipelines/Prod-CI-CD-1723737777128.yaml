@@ -57,3 +57,5 @@ pipeline:
             type: Cloud
             spec: {}
         type: CI
+        delegateSelectors:
+          - helm-delegate
