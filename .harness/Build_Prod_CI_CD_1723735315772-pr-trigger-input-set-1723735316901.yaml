@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_Prod_CI_CD_1723735315772-pr-trigger-input-set
+  identifier: Build_Prod_CI_CD_1723735315772prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: ProductionCICD
+  pipeline:
+    identifier: Build_Prod_CI_CD_1723735315772
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
